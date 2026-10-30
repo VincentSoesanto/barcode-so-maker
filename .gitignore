@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# PyInstaller / build output
+build/
+dist/
+_build/
+*.spec
+*.exe
+*.zip
+
+# Data and settings the app creates next to itself
+barcode_settings.json
+so_draft.json
+SO_output/
+barcode_output/
+daftar_cust.json
+barcode_error.log
+selftest_result.txt
+
+# Real Master Barang files (only the demo file is in the repo)
+*.xls
+MASTER BARANG UPDATE*
+
+# Office temp files / editors
+~$*
+.vscode/
+.idea/
+Thumbs.db

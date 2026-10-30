@@ -1,0 +1,70 @@
+PEMBUAT BARCODE - cara pakai di komputer lain
+=============================================
+
+1. Extract (unzip) "Pembuat Barcode.zip" ke satu folder di komputer itu, misalnya
+   C:\Pembuat Barcode\  -  JANGAN jalankan langsung dari dalam zip.
+   Isinya:
+     Pembuat Barcode.exe
+     SO\Form SO (Sales Order).xlsx      (folder SO beserta isinya)
+     CARA PAKAI.txt
+   Tidak perlu install Python.
+
+2. Klik dua kali "Pembuat Barcode.exe".
+   - Setiap dibuka butuh beberapa detik.
+   - Kalau Windows menampilkan "Windows protected your PC":
+     klik "More info" lalu "Run anyway" (karena program ini tidak ditandatangani).
+
+3. Di tab "Cetak Stiker", klik "Pilih..." di File Master Barang dan pilih file
+   MASTER BARANG (boleh di folder bersama, misalnya \\NAMA-PC\DATA\MASTER BARANG UPDATE.xls).
+   Pilihan ini diingat untuk berikutnya.
+   Untuk mencoba: file contoh demo\MASTER BARANG DEMO.xlsx (barang rekaan) dipakai otomatis
+   kalau belum ada file Master Barang.
+
+4. Untuk mencetak, komputer itu perlu Microsoft Word (stiker) dan Excel (SO).
+
+5. Ukuran kertas stiker di printer: 138 x 215 mm (custom size), POTRET (portrait).
+   Kertas stiker dimasukkan ke printer dengan sisi kiri (yang tidak ada kertas kosong) duluan.
+   Kalau printer memakai ukuran lain, hasil cetak bisa bergeser.
+
+Catatan:
+  - Form SO di folder SO boleh diganti. Kalau folder SO tidak ada, program memakai salinan
+    form yang ada di dalam .exe.
+  - Program membuat file-file ini di folder yang sama dengan .exe:
+      barcode_settings.json  pilihan yang diingat (file Master Barang, folder hasil, tata letak stiker)
+      so_draft.json          SO yang sedang dikerjakan
+      barcode_output\        hasil stiker
+      SO_output\             file SO
+      barcode_error.log      hanya kalau ada error - kirim file ini untuk dicek
+  - File SO disimpan per Cust (tanpa spasi atau '-', hanya '_'):
+      SO_output\<Cust>\<Cust>_SO_<No>_<Bulan>_<Tahun>.xlsx
+      contoh: SO_output\Toko_Maju\Toko_Maju_SO_5_Oktober_2026.xlsx
+    No. SO baru = nomor SO tertinggi bulan ini + 1 (otomatis). Setiap bulan baru, No. SO mulai
+    lagi dari 1. SO yang belum selesai dicetak boleh tetap dipakai di bulan berikutnya
+    (namanya tetap bulan lama); SO baru yang dibuat dari situ memakai nomor bulan yang baru.
+    Jangan ganti nama file SO - nomornya dibaca dari nama file.
+  - Lunas: centang kotak "Lunas" (di sebelah Cetak SO) kalau SO sudah dibayar. Nama filenya
+    langsung jadi ..._lunas.xlsx (contoh: Toko_Maju_SO_5_Oktober_2026_lunas.xlsx). Hapus centang
+    untuk membatalkan. Nomor SO lunas tetap terpakai.
+  - Ketik barang tanpa scanner: ketik sebagian Kode atau Nama Barang di kotak "Scan barcode",
+    lalu muncul daftar barang yang cocok. Klik barangnya (atau pilih dengan panah bawah/atas
+    lalu Enter) untuk menambahkannya ke SO. Kalau Kode sudah diketik lengkap, Enter saja.
+  - Cust: daftar cust langsung muncul begitu kotak Cust diklik. Ketik untuk menyaring daftar
+    (hanya nama yang mengandung ketikan yang tampil). Klik nama untuk memilih, X untuk menghapus dari daftar (file SO-nya tidak dihapus),
+    "+ Tambah cust" untuk menambah nama yang diketik. Daftar ini disimpan di
+    SO_output\daftar_cust.json, jadi sama untuk semua komputer yang memakai folder itu.
+  - Di sebelah "Load SO" ada daftar SO cust itu yang belum lunas - pilih untuk menambah ke SO itu.
+    Tombol "Load SO" tetap bisa membuka SO apa saja (juga yang sudah lunas).
+  - Nama Cust di kertas SO dicetak TEBAL (Calibri 11). Nama yang panjang otomatis mengecil
+    supaya muat dan tidak menabrak tulisan "Jumlah SO:".
+  - Baris OP: setiap kertas SO baru, baris barang pertama selalu "OP" dengan No 1 dan
+    Keterangan "PALET" (merah, tebal, Qty kosong, diisi tangan). Barang yang di-scan mulai dari baris kedua, dengan No 2, 3, 4, ...
+    (No di daftar program sama dengan No di kertas). Baris OP hanya dicetak sekali,
+    saat form baru dicetak pertama kali; Cetak SO berikutnya (hanya baris baru) tidak mencetak
+    OP lagi. OP tidak dihitung sebagai barang (tidak muncul di daftar scan dan jumlah baris).
+    SO lama yang dibuat sebelum ada baris OP tetap seperti dulu (tanpa OP, 49 baris, No mulai 1).
+  - Satu kertas SO muat 48 barang (+ baris OP); SO lama tanpa OP muat 49. Kalau saat Tambah Barang atau Cetak SO barangnya
+    tidak muat di sisa baris kertasnya, program menawarkan SO baru: yang muat tetap di SO ini,
+    sisanya langsung disimpan sebagai SO baru (Cust sama), jadi No. SO tetap urut.
+    Kalau beberapa komputer memakai folder hasil yang sama (folder bersama), nomornya tidak bentrok.
+  - Setelah program diubah, jalankan "Buat Exe dan Zip.bat"
+    untuk membuat ulang Pembuat Barcode.exe dan Pembuat Barcode.zip.
