@@ -13,11 +13,25 @@ as it is for the shop's staff.
 
 ## Screenshots
 
-_Screenshots coming soon._
+All screenshots use the made-up demo data.
 
-| Cetak Stiker (stickers) | SO (sales order) |
-|---|---|
-| `docs/stiker.png` | `docs/so.png` |
+**Cetak Stiker**: tick items and set how many stickers each one needs.
+
+![Cetak Stiker tab](docs/stiker.png)
+
+**The sticker sheet** it generates (the Word document, exported to PDF; shown turned upright, it prints
+a quarter turn on the 8 x 7 die-cut sheet). Price code on top, Code 39 barcode, item code below.
+
+![Generated sticker sheet](docs/sticker_sheet.png)
+
+**SO**: scanned rows for a customer. Grey rows with ✓ are already printed on the paper; the new rows below
+them are the only ones the next "Cetak SO" prints.
+
+![SO tab](docs/so.png)
+
+**The SO form** filled in by the app (top part of the page; row 1 is the `OP` row for hand-written notes).
+
+![Filled SO form](docs/so_form.png)
 
 ## Features
 
